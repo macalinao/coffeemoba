@@ -8,13 +8,6 @@
 #
 Common.Scheduler.TaskWorker = class TaskWorker
     #
-    # Default constructor
-    #
-    # \param _asWorkerCount The number of workers
-    #
-    constructor : (@_asWorkerCount) ->
-
-    #
     # Destroy the worker pool
     #
     destroy : ->

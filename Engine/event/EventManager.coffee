@@ -21,10 +21,10 @@ Common.Event.EventManager = class EventManager
 
     #
     # Emit an event into every observer and execute
-    # a completation handler at the end
+    # a completion handler at the end
     #
     # \param asEvent    The event to be emited
-    # \param asFunction The completation handler
+    # \param asFunction The completion handler
     #
     # \return The event that was triggered
     #
@@ -39,10 +39,10 @@ Common.Event.EventManager = class EventManager
         
     #
     # Emit an event into every observer asynchronized
-    # and execute a completation handler at the end
+    # and execute a completion handler at the end
     #
     # \param asEvent The event to be emited
-    # \param asFunction The completation handler
+    # \param asFunction The completion handler
     #
     # \return This instance
     #
