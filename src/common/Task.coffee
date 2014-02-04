@@ -38,7 +38,7 @@ class Task
     # \param _asPriority The priority of thie task
     # \param _isParallel True if task runs in parallel
     #
-    constructor: (@_asCallback, @_asTime, @_asPeriod, @_asPriority, @_isParallel) ->
+    constructor : (@_asCallback, @_asTime, @_asPeriod, @_asPriority, @_isParallel) ->
         @_isCancelled = false
 
     #
@@ -46,55 +46,55 @@ class Task
     #
     # \param asName The name of the task
     #
-    setName: (@_asName) ->
+    setName : (@_asName) ->
         return
 
     #
     # Return the name of the task
     #
-    getName: ->
+    getName : ->
         return @_asName
 
     #
     # Return if the task is being repeating
     #
-    isRepeating: ->
+    isRepeating : ->
         return @_asPeriod > 0
 
     #
     # Return if the task runs in parallel
     #
-    isParallel: ->
+    isParallel : ->
         return @_isParallel
 
     #
     # Return if the task is cancelled
     #
-    isCancelled: ->
+    isCancelled : ->
         return @_isCancelled
 
     #
     # Set the cancellation of this task
     #
-    setCancelled: (@_isCancelled = true) ->
+    setCancelled : (@_isCancelled = true) ->
         return
 
     #
     # Return the priority of this task
     #
-    getPriority: ->
+    getPriority : ->
         return @_asPriority
 
     #
     # Return the next tick of this task
     #
-    getTime: ->
+    getTime : ->
         return @_asTime
 
     #
     # Return the repetitive tick of this task
     #
-    getPeriod: ->
+    getPeriod : ->
         return @_asPeriod
 
     #
@@ -102,7 +102,7 @@ class Task
     #
     # \param asArguments The arguments of the callback
     #
-    run: (asArguments...) ->
+    run : (asArguments...) ->
         # Forward the call to the arguments and return
         # if the callback returns anything
         _asCallback(asArguments)

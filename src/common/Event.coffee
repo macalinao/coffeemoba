@@ -32,19 +32,19 @@ class Event
     #
     # Default constructor
     #
-    constructor: () ->
+    constructor : () ->
         @_isCancelled = false
 
     #
     # Return the name of the event
     #
-    getName: () ->
+    getName : () ->
         return "Event"
 
     #
     # Return if the e
     #
-    isCancelled: () ->
+    isCancelled : () ->
         return @_isCancelled
 
     #
@@ -52,7 +52,7 @@ class Event
     #
     # \param m_IsCancelled True if the event is cancelled
     #
-    setCancelled: (@_isCancelled = true) ->
+    setCancelled : (@_isCancelled = true) ->
         return
 
 #
@@ -62,14 +62,14 @@ class HandlerList
     #
     # Default constructor of the class
     #
-    constructor: -> @_asEventList = []
+    constructor : -> @_asEventList = []
 
     #
     # Calls an event into all delegates
     #
     # \param asEvent The event to be propagated
     #
-    emitEvent: (asEvent) ->
+    emitEvent : (asEvent) ->
         for asListener in @_asEventList.slice(0).reverse()
             # Only execute it if the event is not cancelled or the listener
             # can be execute even if the event was cancelled
@@ -84,7 +84,7 @@ class HandlerList
     # \param asPriority The priority of the listener
     # \param ignoreCancelled Does the listener excecutes always?
     #
-    addEvent: (asListener, asPriority, ignoreCancelled) ->
+    addEvent : (asListener, asPriority, ignoreCancelled) ->
         # Convert to a tuple
         asTuple  = { callback: asListener priority: asPriority ignoreCancelled: ignoreCancelled }
 
@@ -107,7 +107,7 @@ class HandlerList
     #
     # \return True if the event was removed
     #
-    removeEvent: (asListener, asPriority) ->
+    removeEvent : (asListener, asPriority) ->
         # Find the event to remove it
         for asNode, asIndex in @_asEventList
             if (asNode.callback is asListener and asNode.priority is asPriority)
@@ -118,5 +118,5 @@ class HandlerList
     #
     # Return if the handler contains any event
     #
-    hasEvents: ->
+    hasEvents : ->
         return !!@_asEventList.length

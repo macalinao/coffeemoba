@@ -12,7 +12,7 @@ class EventManager
     #
     # \param asTaskManager The task manager of this manager
     #
-    constructor: (asTaskManager) ->
+    constructor : (asTaskManager) ->
         # The instance of the task manager
         @_asTaskManager = asTaskManager
 
@@ -28,7 +28,7 @@ class EventManager
     #
     # \return The event that was triggered
     #
-    emitEvent: (asEvent, asFunction = null) ->
+    emitEvent : (asEvent, asFunction = null) ->
         # Retrieve the type handler
         asHandler = @_asEventList[asEvent.getName()]
 
@@ -46,7 +46,7 @@ class EventManager
     #
     # \return This instance
     #
-    emitEventAsync: (asEvent, asFunction = null) ->
+    emitEventAsync : (asEvent, asFunction = null) ->
         # Push a work into any available task
         # to pickup the event and execute it
         @_asTaskManager.addTask => @emitEvent(asEvent, asFunction)
@@ -62,7 +62,7 @@ class EventManager
     #
     # \return This instance
     #
-    addEvent: (asType, asListener, asPriority = EventPriority.NORMAL, ignoreCancelled = false) ->
+    addEvent : (asType, asListener, asPriority = EventPriority.NORMAL, ignoreCancelled = false) ->
         if (asType is null || asListener is null)
             throw EventException("Unable to register an nulled event.")
 
@@ -81,7 +81,7 @@ class EventManager
     #
     # \return This instance
     #
-    removeEvent: (asType, asListener, asPriority = EventPriority.NORMAL) ->
+    removeEvent : (asType, asListener, asPriority = EventPriority.NORMAL) ->
         if (asType is null || asListener is null || @_asEventList[asType] is null)
             throw EventException("Unable to register an nulled event.")
 
@@ -96,7 +96,7 @@ class EventManager
     #
     # \return This instance
     #
-    removeAllEvent: (asType) ->
+    removeAllEvent : (asType) ->
         # If the optional parameter is set then remove
         # only the event specified, otherwise remove every event
         # registered by this context

@@ -12,12 +12,12 @@ class TaskWorker
     #
     # \param _asWorkerCount The number of workers
     #
-    constructor: (@_asWorkerCount) ->
+    constructor : (@_asWorkerCount) ->
 
     #
     # Destroy the worker pool
     #
-    destroy: ->
+    destroy : ->
         throw Error "Unimplemented method"
 
     #
@@ -25,5 +25,5 @@ class TaskWorker
     #
     # \param asTask The task to be added to the pool
     #
-    addTask: (asTask) ->
+    addTask : (asTask) ->
         throw Error "Unimplemented method"

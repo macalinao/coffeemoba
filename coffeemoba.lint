@@ -44,8 +44,8 @@
         "name": "colon_assignment_spacing",
         "level": "ignore",
         "spacing": {
-            "left": 0,
-            "right": 0
+            "left": 1,
+            "right": 1
         }
     },
     "no_implicit_braces": {
@@ -105,7 +105,7 @@
     },
     "missing_fat_arrows": {
         "name": "missing_fat_arrows",
-        "level": "ignore"
+        "level": "warn"
     },
     "non_empty_constructor_needs_parens": {
         "name": "non_empty_constructor_needs_parens",

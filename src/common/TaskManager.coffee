@@ -13,13 +13,13 @@ class TaskManager
     # \param _asIterationPerSecond The number of iterations per second
     # \param _asWorkerPool         The worker pool that is used by this manager
     #
-    construcctor: (@_asIterationPerSecond, @_asWorkerPool) ->
+    construcctor : (@_asIterationPerSecond, @_asWorkerPool) ->
         @_isActive     = false
 
     #
     # Executes the scheduler
     #
-    run: ->
+    run : ->
         # Active the scheduler
         @_isActive = true
 
@@ -36,31 +36,31 @@ class TaskManager
     #
     # Returns the current tick of the scheduler
     #
-    getUptime: ->
+    getUptime : ->
         return @_asCurrentTick
     
     #
     # Returns how many iterations per second the scheduler is executing
     #
-    getIterationPerSecond: ->
+    getIterationPerSecond : ->
         return @_asIterationPerSecond
 
     #
     # Returns if the scheduler is overloaded
     #
-    isOverloaded: ->
+    isOverloaded : ->
         return @_isOverloaded
 
     #
     # Returns if the scheduler is currently running
     #
-    isActive: ->
+    isActive : ->
         return @_isActive
 
     #
     # Cancel the scheduler for being executed
     #
-    setActive: (@_isActive = false) ->
+    setActive : (@_isActive = false) ->
         return
 
     #
@@ -71,7 +71,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    addTask: (asCallback, asPriority) ->
+    addTask : (asCallback, asPriority) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, 0, 0, false)
@@ -85,7 +85,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    addDelayedTask: (asCallback, asPriority, asDelay) ->
+    addDelayedTask : (asCallback, asPriority, asDelay) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, asDelay, 0, false)
@@ -100,7 +100,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    addRepeatitiveTask: (asCallback, asPriority, asDelay, asPeriod) ->
+    addRepeatitiveTask : (asCallback, asPriority, asDelay, asPeriod) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, asDelay, asPeriod, false)
@@ -113,7 +113,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    addAsyncTask: (asCallback, asPriority) ->
+    addAsyncTask : (asCallback, asPriority) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, 0, 0, true)
@@ -127,7 +127,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    addAsyncDelayedTask: (asCallback, asPriority, asDelay) ->
+    addAsyncDelayedTask : (asCallback, asPriority, asDelay) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, asDelay, 0, true)
@@ -142,7 +142,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    addAsyncRepeatitiveTask: (asCallback, asPriority, asDelay, asPeriod) ->
+    addAsyncRepeatitiveTask : (asCallback, asPriority, asDelay, asPeriod) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, asDelay, asPeriod, true)
@@ -158,7 +158,7 @@ class TaskManager
     #
     # \return The instance of the task
     #
-    deferredTask: (asCallback, asPriority, asDelay, asPeriod, isParallel) ->
+    deferredTask : (asCallback, asPriority, asDelay, asPeriod, isParallel) ->
         # A new task has been deferred to be executed
         @_asTaskID++
         
@@ -175,5 +175,5 @@ class TaskManager
     #
     # Step an action in the task manager
     #
-    stepAnAction: ->
+    stepAnAction : ->
         # <TODO: The whole task loop>
