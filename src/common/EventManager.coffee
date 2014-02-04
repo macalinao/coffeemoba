@@ -33,8 +33,8 @@ class EventManager
         asHandler = @_asEventList[asEvent.getName()]
 
         # Emit the event to every handler
-        if asHandler  isnt null then asHandler.emitEvent(asEvent)
-        if asFunction isnt null then asFunction(asEvent)
+        if asHandler?  then asHandler.emitEvent(asEvent)
+        if asFunction? then asFunction(asEvent)
         return asEvent
         
     #
@@ -50,7 +50,7 @@ class EventManager
         # Push a work into any available task
         # to pickup the event and execute it
         @_asTaskManager.addTask => @emitEvent(asEvent, asFunction)
-        return @
+        return this
 
     #
     # Add an event into the engine
@@ -63,14 +63,14 @@ class EventManager
     # \return This instance
     #
     addEvent : (asType, asListener, asPriority = EventPriority.NORMAL, ignoreCancelled = false) ->
-        if (asType is null || asListener is null)
+        if (asType? or asListener?)
             throw EventException("Unable to register an nulled event.")
 
         # Add the listener to the list.
         # If the handler is empty, then create a new instance
         asHandlerList = (@_asEventList[asType] ?= new HandlerList)
         asHandlerList.addEvent(asListener, asPriority.getOrdinal(), ignoreCancelled)
-        return @
+        return this
 
     #
     # Removes an event from the engine
@@ -82,12 +82,12 @@ class EventManager
     # \return This instance
     #
     removeEvent : (asType, asListener, asPriority = EventPriority.NORMAL) ->
-        if (asType is null || asListener is null || @_asEventList[asType] is null)
+        if (asType? or asListener? or @_asEventList[asType]?)
             throw EventException("Unable to register an nulled event.")
 
         # Forward the call to the targer HandlerList
         @_asEventList[asType].removeEvent(asListener, asPriority.getOrdinal())
-        return @
+        return this
 
     #
     # Removes every event registered
@@ -96,9 +96,9 @@ class EventManager
     #
     # \return This instance
     #
-    removeAllEvent : (asType) ->
+    removeAllEvent : (asType = null) ->
         # If the optional parameter is set then remove
         # only the event specified, otherwise remove every event
         # registered by this context
-        if asType is null then delete @_asEventList else delete @_asEventList[asType]
-        return @
+        if asType? then delete @_asEventList else delete @_asEventList[asType]
+        return this

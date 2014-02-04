@@ -14,7 +14,8 @@ class TaskManager
     # \param _asWorkerPool         The worker pool that is used by this manager
     #
     construcctor : (@_asIterationPerSecond, @_asWorkerPool) ->
-        @_isActive     = false
+        @_isActive      = false
+        @_asCurrentTick = 0
 
     #
     # Executes the scheduler
@@ -133,21 +134,6 @@ class TaskManager
         return @deferredTask(asCallback, asPriority, asDelay, 0, true)
 
     #
-    # Schedules a repeatitive asynchronized task
-    #
-    # \param asCallback The callback of the task
-    # \param asPriority The priority of the task
-    # \param asDelay    The delayed tick to execute the task
-    # \param asPeriod   The repeatitive period tick of the task
-    #
-    # \return The instance of the task
-    #
-    addAsyncRepeatitiveTask : (asCallback, asPriority, asDelay, asPeriod) ->
-        # Deferred the registration of the task
-        # to the registrator
-        return @deferredTask(asCallback, asPriority, asDelay, asPeriod, true)
-    
-    #
     # Deferred a task into the callback's list
     #
     # \param asCallback The callback of the task
@@ -176,4 +162,45 @@ class TaskManager
     # Step an action in the task manager
     #
     stepAnAction : ->
-        # <TODO: The whole task loop>
+        asQueue    = new Queue()
+        isFinished = false
+
+        # Deferred every task to execute on this tick, the scheduler
+        # find the best suitable task to be executed on this tick
+        loop
+            # Gets the first task to be executed
+            asTask = @_asActiveTask.peek()
+
+            # Check if the task can be executed, if not then probably
+            # other task cannot be executed as well, since the first task
+            # popped from a priority queue is the one likely to be executed first
+            if (not asTask? and asTask.getTime() >= @_asCurrentTick)
+                # Check if the task was cancelled
+                if (not asTask.isCancelled)
+                    # Should the task go to the synchronized queue or the asynchronized queue
+                    # The asynchronized task may be executed after pushing it
+                    if (asTask.isParallel) then asQueue.push(asTask)
+                    else @_asWorkerPool.addTask(asTask)
+
+                # Even if the task was cancelled or not remove it from the queue
+                @_asActiveTask.pop()
+            else
+                break
+
+        # Handle every task deferred to the synchronized channel, those task
+        # will be executed on the browser main thread
+        while (not asQueue.isEmpty)
+            # Run the task popped from the queue
+            asTask = asQueue.pop()
+            asTask.run()
+
+            # Check if the task is repeatitive
+            if (asTask.isRepeatitive and not asTask.isCancelled)
+                @_asDeferredTask.push(asTask)
+
+        # Add every task that was left to add from an external call or
+        # a repeatitive task
+        while (not @_asDeferredTask.isEmpty)
+            @_asActiveTask.push(@_asDeferredTask.pop())
+
+        # <TODO: Handle Loop Timing>

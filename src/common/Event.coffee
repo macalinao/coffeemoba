@@ -92,7 +92,10 @@ class HandlerList
     #
     addEvent : (asListener, asPriority, ignoreCancelled) ->
         # Convert to a tuple
-        asTuple  = { callback: asListener priority: asPriority ignoreCancelled: ignoreCancelled }
+        asTuple  =
+            callback : asListener
+            priority : asPriority
+            ignoreCancelled : ignoreCancelled
 
         # Add the event into a priority list to handle
         # it correctly
