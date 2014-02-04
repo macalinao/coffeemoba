@@ -92,16 +92,16 @@ class TaskManager
         return @deferredTask(asCallback, asPriority, asDelay, 0, false)
 
     #
-    # Schedules a repeatitive synchronized task
+    # Schedules a repeating synchronized task
     #
     # \param asCallback The callback of the task
     # \param asPriority The priority of the task
     # \param asDelay    The delayed tick to execute the task
-    # \param asPeriod   The repeatitive period tick of the task
+    # \param asPeriod   The repeating period tick of the task
     #
     # \return The instance of the task
     #
-    addRepeatitiveTask : (asCallback, asPriority, asDelay, asPeriod) ->
+    addRepeatingTask : (asCallback, asPriority, asDelay, asPeriod) ->
         # Deferred the registration of the task
         # to the registrator
         return @deferredTask(asCallback, asPriority, asDelay, asPeriod, false)
@@ -195,7 +195,7 @@ class TaskManager
             asTask.run()
 
             # Check if the task is repeatitive
-            if (asTask.isRepeatitive and not asTask.isCancelled)
+            if (asTask.isRepeating and not asTask.isCancelled)
                 @_asDeferredTask.push(asTask)
 
         # Add every task that was left to add from an external call or
