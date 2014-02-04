@@ -6,7 +6,7 @@
 #
 # Define the interface for a worker implementation
 #
-class TaskWorker
+Common.Scheduler.TaskWorker = class TaskWorker
     #
     # Default constructor
     #

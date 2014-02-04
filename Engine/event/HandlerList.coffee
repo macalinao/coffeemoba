@@ -4,67 +4,9 @@
 ##################################################################
 
 #
-# Define the possible priorities of an event
-#P
-class EventPriority extends Enum
-    # Enumeration size
-    @_asSize   : 0
-
-    # Enumeration values
-    @_asValues : { LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR }
-
-    # Priority: 0 -> Can be cancelled
-    @LOWEST  : new EventPriority
-
-    # Priority: 1 -> Can be cancelled
-    @LOW     : new EventPriority
-    
-    # Priority: 2 -> Can be cancelled
-    @NORMAL  : new EventPriority
-    
-    # Priority: 3 -> Can be cancelled
-    @HIGH    : new EventPriority
-    
-    # Priority: 4 -> Can be cancelled
-    @HIGHEST : new EventPriority
-    
-    # Priority: 5 -> Can be cancelled
-    @MONITOR : new EventPriority
-
-#
-# Define the base class for any event
-#
-class Event
-    #
-    # Default constructor
-    #
-    constructor : () ->
-        @_isCancelled = false
-
-    #
-    # Return the name of the event
-    #
-    getName : () ->
-        return "Event"
-
-    #
-    # Return if the e
-    #
-    isCancelled : () ->
-        return @_isCancelled
-
-    #
-    # Set the cancellation of this event
-    #
-    # \param m_IsCancelled True if the event is cancelled
-    #
-    setCancelled : (@_isCancelled = true) ->
-        return
-
-#
 # Define the handler for a specified event
 #
-class HandlerList
+Common.Event.HandlerList = class HandlerList
     #
     # Default constructor of the class
     #

@@ -6,7 +6,7 @@
 #
 # Define the manager of every task as a scheduler
 #
-class TaskManager
+Common.Scheduler.TaskManager = class TaskManager
     #
     # Default constructor of the class
     #
@@ -151,7 +151,7 @@ class TaskManager
         
         # Build a new task with the current tick
         # of the scheduler
-        asTask = new Task(asCallback, asPriority, @_asCurrentTick + asDelay, asPeriod, isParallel)
+        asTask = new Common.Task(asCallback, asPriority, @_asCurrentTick + asDelay, asPeriod, isParallel)
         asTask.setName("Task #{@_asTaskID}")
 
         # Deferred the task to be added when the scheduler
@@ -224,3 +224,6 @@ class TaskManager
         else
             # Add a counter to the overloaded tick.
             @_asOverloadedTick++
+
+            # Don't sleep since we need to try to catch the tick
+            setTimeout(@start, 0)

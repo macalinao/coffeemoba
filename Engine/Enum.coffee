@@ -6,7 +6,7 @@
 #
 # Define a Java-style enumeration
 #
-class Enum
+Common.Enum = class Enum
     # Define the lenght of the enumeration
     @_asLenght : 0
     
@@ -83,8 +83,3 @@ class Enum
     #
     toString: ->
         return "#{@_asName} (#{@_asOrdinal})"
-
-#
-# EXPORT
-#
-exports.Enum = Enum
