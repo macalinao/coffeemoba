@@ -5,25 +5,31 @@
 
 #
 # Define the possible priorities of an event
-#
-EventPriority =
+#P
+class EventPriority extends Enum
+    # Enumeration size
+    @_asSize   : 0
+
+    # Enumeration values
+    @_asValues : { LOWEST, LOW, NORMAL, HIGH, HIGHEST, MONITOR }
+
     # Priority: 0 -> Can be cancelled
-    LOWEST  : 0
-    
+    @LOWEST  : new EventPriority
+
     # Priority: 1 -> Can be cancelled
-    LOW     : 100
+    @LOW     : new EventPriority
     
     # Priority: 2 -> Can be cancelled
-    NORMAL  : 200
+    @NORMAL  : new EventPriority
     
     # Priority: 3 -> Can be cancelled
-    HIGH    : 300
+    @HIGH    : new EventPriority
     
     # Priority: 4 -> Can be cancelled
-    HIGHEST : 400
+    @HIGHEST : new EventPriority
     
     # Priority: 5 -> Can be cancelled
-    MONITOR : 500
+    @MONITOR : new EventPriority
 
 #
 # Define the base class for any event

@@ -69,7 +69,7 @@ class EventManager
         # Add the listener to the list.
         # If the handler is empty, then create a new instance
         asHandlerList = (@_asEventList[asType] ?= new HandlerList)
-        asHandlerList.addEvent(asListener, asPriority, ignoreCancelled)
+        asHandlerList.addEvent(asListener, asPriority.getOrdinal(), ignoreCancelled)
         return @
 
     #
@@ -86,7 +86,7 @@ class EventManager
             throw EventException("Unable to register an nulled event.")
 
         # Forward the call to the targer HandlerList
-        @_asEventList[asType].removeEvent(asListener, asPriority)
+        @_asEventList[asType].removeEvent(asListener, asPriority.getOrdinal())
         return @
 
     #
