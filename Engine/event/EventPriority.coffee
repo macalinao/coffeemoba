@@ -6,7 +6,7 @@
 #
 # Define the possible priorities of an event
 #
-Common.Event.EventPriority = class EventPriority extends Common.Enum
+Common.EventPriority = class EventPriority extends Common.Enum
     # Enumeration size
     @_asSize   : 0
 

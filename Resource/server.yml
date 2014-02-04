@@ -1,0 +1,5 @@
+#
+# The engine configuration block
+#
+Engine:
+  IterationPerSecond: 60     # The server runs at 60fps.

@@ -6,7 +6,7 @@
 #
 # Define the handler for a specified event
 #
-Common.Event.HandlerList = class HandlerList
+Common.HandlerList = class HandlerList
     #
     # Default constructor of the class
     #

@@ -6,7 +6,7 @@
 #
 # Define the base class for any event
 #
-Common.Event.Event = class Event
+Common.Event = class Event
     #
     # Default constructor
     #

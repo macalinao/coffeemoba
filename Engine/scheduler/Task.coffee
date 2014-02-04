@@ -6,7 +6,7 @@
 #
 # Define a task to be executed by the scheduler
 #
-Common.Scheduler.Task = class Task
+Common.Task = class Task
     #
     # Default constructor
     #
@@ -91,5 +91,5 @@ Common.Scheduler.Task = class Task
     run : (asArguments...) ->
         # Forward the call to the arguments and return
         # if the callback returns anything
-        _asCallback(asArguments)
+        @_asCallback(asArguments)
         return

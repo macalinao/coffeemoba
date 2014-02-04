@@ -6,7 +6,7 @@
 #
 # Define the possible priorities of a task
 #
-Common.Scheduler.TaskPriority = class TaskPriority extends Common.Enum
+Common.TaskPriority = class TaskPriority extends Common.Enum
     # Enumeration size
     @_asSize   : 0
 

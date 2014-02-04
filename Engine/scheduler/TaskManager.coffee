@@ -6,7 +6,7 @@
 #
 # Define the manager of every task as a scheduler
 #
-Common.Scheduler.TaskManager = class TaskManager
+Common.TaskManager = class TaskManager
     #
     # Default constructor of the class
     #
@@ -31,7 +31,7 @@ Common.Scheduler.TaskManager = class TaskManager
             stepAnAction()
 
         else
-            # If the task manager is no longer available,
+            # If the task manager is no lon ger available,
             # then destroy the worker pool
             @_asWorkerPool.destroy()
 
@@ -151,7 +151,8 @@ Common.Scheduler.TaskManager = class TaskManager
         
         # Build a new task with the current tick
         # of the scheduler
-        asTask = new Common.Task(asCallback, asPriority, @_asCurrentTick + asDelay, asPeriod, isParallel)
+        asTask = new Common.Task(asCallback, asPriority, @_asCurrentTick + asDelay, asPeriod,
+            isParallel)
         asTask.setName("Task #{@_asTaskID}")
 
         # Deferred the task to be added when the scheduler

@@ -4,11 +4,11 @@
 ##################################################################
 
 #
-# Define the implementation of #{Common.Scheduler.Timer}
+# Define the implementation of #{Common.Timer}
 #
-Scheduler.Scheduler.Timer = class Timer extends Common.Scheduler.Timer
+Scheduler.Timer = class Timer extends Common.Timer
     #
     # \no-doc
     #
     getSystemTime: ->
-    	return process.hrtime()
+        return process.hrtime()

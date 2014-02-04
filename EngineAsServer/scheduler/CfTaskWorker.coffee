@@ -9,9 +9,9 @@
 Threading = require('threads_a_gogo')
 
 #
-# Define the implementation of #{Common.Scheduler.TaskWorker}
+# Define the implementation of #{Common.TaskWorker}
 #
-Server.Scheduler.TaskWorker = class TaskWorker extends Common.Scheduler.TaskWorker
+Server.TaskWorker = class TaskWorker extends Common.TaskWorker
     #
     # Default constructor
     #
