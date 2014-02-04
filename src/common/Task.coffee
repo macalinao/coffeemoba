@@ -8,22 +8,22 @@
 #
 TaskPriority =
     # Priority: Are being rescheduled by 10s
-    Lowest  : 10000
+    LOWEST  : 10000
 
     # Priority: Are being rescheduled by 2.5s
-    Low     : 2500
+    LOW     : 2500
 
     # Priority: Are being rescheduled by 1.0s
-    Normal  : 1000
+    NORMAL  : 1000
 
     # Priority: Are being rescheduled by 0.5s
-    High    : 500
+    HIGH    : 500
 
     # Priority: Are being rescheduled by 0.25s
-    Highest : 250
+    HIGHEST : 250
 
     # Priority: Never rescheduled
-    Monitor : 0
+    MONITOR : 0
 
 #
 # Define a task to be executed by the scheduler
@@ -46,7 +46,7 @@ class Task
     #
     # \param asName The name of the task
     #
-    setName: (@_asName = "Task") ->
+    setName: (@_asName) ->
         return
 
     #

@@ -62,7 +62,7 @@ class EventManager
     #
     # \return This instance
     #
-    addEvent: (asType, asListener, asPriority = EventPriority.Normal, ignoreCancelled = false) ->
+    addEvent: (asType, asListener, asPriority = EventPriority.NORMAL, ignoreCancelled = false) ->
         if (asType is null || asListener is null)
             throw EventException("Unable to register an nulled event.")
 
@@ -81,7 +81,7 @@ class EventManager
     #
     # \return This instance
     #
-    removeEvent: (asType, asListener, asPriority = EventPriority.Normal) ->
+    removeEvent: (asType, asListener, asPriority = EventPriority.NORMAL) ->
         if (asType is null || asListener is null || @_asEventList[asType] is null)
             throw EventException("Unable to register an nulled event.")
 

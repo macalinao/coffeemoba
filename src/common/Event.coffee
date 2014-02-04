@@ -8,22 +8,22 @@
 #
 EventPriority =
     # Priority: 0 -> Can be cancelled
-    Lowest  : 0
+    LOWEST  : 0
     
     # Priority: 1 -> Can be cancelled
-    Low     : 100
+    LOW     : 100
     
     # Priority: 2 -> Can be cancelled
-    Normal  : 200
+    NORMAL  : 200
     
     # Priority: 3 -> Can be cancelled
-    High    : 300
+    HIGH    : 300
     
     # Priority: 4 -> Can be cancelled
-    Highest : 400
+    HIGHEST : 400
     
     # Priority: 5 -> Can be cancelled
-    Monitor : 500
+    MONITOR : 500
 
 #
 # Define the base class for any event

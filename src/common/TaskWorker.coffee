@@ -4,7 +4,7 @@
 ##################################################################
 
 #
-# Define the interface for a worker implementationl
+# Define the interface for a worker implementation
 #
 class TaskWorker
     #
