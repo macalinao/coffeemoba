@@ -42,7 +42,7 @@ exports.Entry = ->
     
     # Parse the file using YML
     try
-        asSetting = Yaml.load(fileData)
+        asSetting = require('yaml-js').load(fileData)
     catch asException
         console.log("Error: Unable to parse the content of the configuration file.")
         throw asException
@@ -69,7 +69,7 @@ Server.Engine = class Engine extends Common.Engine
         # Creates the instance of the task manager
         #
         asIterationPerSecond = asConfiguration['Engine']['IterationPerSecond']
-        asTaskWorker  = new Server.TaskWorker(System.cpus.length)
+        asTaskWorker  = new Server.TaskWorker(require('os').cpus.length)
         asTaskTimer   = new Server.Timer()
         asTaskManager = new Common.TaskManager(asIterationPerSecond, asTaskWorker, asTaskTimer)
 
