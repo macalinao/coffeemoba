@@ -12,27 +12,28 @@ class TaskManager
     #
     # \param _asIterationPerSecond The number of iterations per second
     # \param _asWorkerPool         The worker pool that is used by this manager
+    # \param _asTimer              The timer implementation of this manager
     #
-    construcctor : (@_asIterationPerSecond, @_asWorkerPool) ->
-        @_isActive      = false
-        @_asCurrentTick = 0
+    construcctor : (@_asIterationPerSecond, @_asWorkerPool, @_asTimer) ->
+        @_isActive         = true
+        @_asCurrentTick    = 0
+        @_asTimePerTick    = 1000 / @_asIterationPerSecond
+        @_asOverloadedTick = 0
 
     #
     # Executes the scheduler
     #
     run : ->
-        # Active the scheduler
-        @_isActive = true
-
-        # Run while the task manager is active;
-        # Every call is a step into the future
-        loop
+        # Run the logic of the scheduler
+        if (@_isActive)
+            # Step into the scheduler, by running
+            # one tick ahead
             stepAnAction()
-            break if @_isActive is false
 
-        # Clean everything nicelly
-        @_asWorkerPool.destroy()
-        return
+        else
+            # If the task manager is no longer available,
+            # then destroy the worker pool
+            @_asWorkerPool.destroy()
 
     #
     # Returns the current tick of the scheduler
@@ -50,7 +51,7 @@ class TaskManager
     # Returns if the scheduler is overloaded
     #
     isOverloaded : ->
-        return @_isOverloaded
+        return @_asOverloadedTick > 10
 
     #
     # Returns if the scheduler is currently running
@@ -162,8 +163,9 @@ class TaskManager
     # Step an action in the task manager
     #
     stepAnAction : ->
-        asQueue    = new Queue()
-        isFinished = false
+        asQueue      = new Queue()
+        isFinished   = false
+        asStartTime  = @_asTimer.getSystemTime()
 
         # Deferred every task to execute on this tick, the scheduler
         # find the best suitable task to be executed on this tick
@@ -194,6 +196,11 @@ class TaskManager
             asTask = asQueue.pop()
             asTask.run()
 
+            if (@isOverloaded)
+                asTask.setTime(@_asCurrentTick + asTask.getPriority().getDeferredTime)
+            else
+                asTask.setTime(@_asCurrentTick)
+
             # Check if the task is repeatitive
             if (asTask.isRepeating and not asTask.isCancelled)
                 @_asDeferredTask.push(asTask)
@@ -203,4 +210,17 @@ class TaskManager
         while (not @_asDeferredTask.isEmpty)
             @_asActiveTask.push(@_asDeferredTask.pop())
 
-        # <TODO: Handle Loop Timing>
+        # A tick just happend
+        @_asCurrentTick++
+        asDiffTime = @_asTimer.getSystemTime() - asStartTime
+        
+        # Handle the timing of the loop
+        if (asDiffTime <= @_asTimePerTick)
+            # remove a counter from the overloaded tick.
+            @_asOverloadedTick--
+
+            # Sleep the time between the frame
+            setTimeout(@start, @_asTimerPerTick - asDiffTime)
+        else
+            # Add a counter to the overloaded tick.
+            @_asOverloadedTick++

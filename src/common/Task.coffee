@@ -112,6 +112,14 @@ class Task
         return @_asTime
 
     #
+    # Sets the new tick time of the task
+    #
+    # \param _asTime The time
+    #
+    setTime : (@_asTime) ->
+        return
+
+    #
     # Return the repetitive tick of this task
     #
     getPeriod : ->
