@@ -6,7 +6,7 @@
 #
 # Define the interface for a worker implementation
 #
-Common.TaskWorker = class TaskWorker
+class TaskWorker
     #
     # Destroy the worker pool
     #

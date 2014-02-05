@@ -6,37 +6,29 @@
 #
 # Define a singleton access to the entire common engine
 #
-Common.EngineAPI = class EngineAPI
-    #
-    # Retrieve the instance of the singleton
-    #
-    @getInstance : ->
-        if (not @_asInstance?)
-            @_asInstance = new @
-        return @_asInstance
-
+class EngineAPI
     #
     # Set the engine the singleton
     #
     # \param asEngine The engine of the singleton
     #
     @setEngine : (asEngine) ->
-        getInstance()._asEngine = asEngine
+        @_asEngine = asEngine
 
     #
     # Return the engine of the instance
     #
     @asEngine : ->
-        return getInstance()._asEngine
+        return @_asEngine
 
     #
     # Return the event manager of the engine
     #
     @asEventManager : ->
-        return getInstance()._asEngine.getEventManager()
-
+        return @_asEngine.getEventManager()
+ 
     #
     # Return the task manager of the engine
     #
     @asTaskManager : ->
-        return getInstance()._asEngine.getTaskManager()
+        return @_asEngine.getTaskManager()

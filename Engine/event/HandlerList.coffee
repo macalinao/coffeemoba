@@ -6,7 +6,7 @@
 #
 # Define the handler for a specified event
 #
-Common.HandlerList = class HandlerList
+class HandlerList
     #
     # Default constructor of the class
     #
@@ -18,7 +18,7 @@ Common.HandlerList = class HandlerList
     # \param asEvent The event to be propagated
     #
     emitEvent : (asEvent) ->
-        for asListener in @_asEventList.slice(0).reverse()
+        for asListener in @_asEventList by -1
             # Only execute it if the event is not cancelled or the listener
             # can be execute even if the event was cancelled
             if (asEvent.isCancelled() is false or asListener.ignoreCancelled)

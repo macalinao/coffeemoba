@@ -6,7 +6,7 @@
 #
 # Define the manager of every task as a scheduler
 #
-Common.TaskManager = class TaskManager
+class TaskManager
     #
     # Default constructor of the class
     #
@@ -146,14 +146,9 @@ Common.TaskManager = class TaskManager
     # \return The instance of the task
     #
     deferredTask : (asCallback, asPriority, asDelay, asPeriod, isParallel) ->
-        # A new task has been deferred to be executed
-        @_asTaskID++
-        
         # Build a new task with the current tick
         # of the scheduler
-        asTask = new Common.Task(asCallback, asPriority, @_asCurrentTick + asDelay, asPeriod,
-            isParallel)
-        asTask.setName("Task #{@_asTaskID}")
+        asTask = new Task(asCallback, asPriority, @_asCurrentTick + asDelay, asPeriod, isParallel)
 
         # Deferred the task to be added when the scheduler
         # finalize it's tick time

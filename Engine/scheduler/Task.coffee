@@ -6,7 +6,7 @@
 #
 # Define a task to be executed by the scheduler
 #
-Common.Task = class Task
+class Task
     #
     # Default constructor
     #

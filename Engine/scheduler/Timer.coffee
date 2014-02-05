@@ -6,7 +6,7 @@
 #
 # Define the interface for a timer implementation
 #
-Common.Timer = class Timer
+class Timer
     #
     # Return the current time of the system
     #

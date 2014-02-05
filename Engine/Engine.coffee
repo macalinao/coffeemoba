@@ -6,7 +6,7 @@
 #
 # Define the engine to access every module
 #
-Common.Engine = class Engine
+class Engine
     #
     # Default constructor of the engine
     #

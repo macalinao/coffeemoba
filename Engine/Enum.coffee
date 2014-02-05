@@ -6,7 +6,7 @@
 #
 # Define a Java-style enumeration
 #
-Common.Enum = class Enum
+class Enum
     # Define the lenght of the enumeration
     @_asLenght : 0
     

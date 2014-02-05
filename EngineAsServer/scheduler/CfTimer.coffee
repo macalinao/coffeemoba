@@ -4,9 +4,9 @@
 ##################################################################
 
 #
-# Define the implementation of #{Common.Timer}
+# Define the implementation of #{Timer}
 #
-Scheduler.Timer = class Timer extends Common.Timer
+class CfTimer extends Timer
     #
     # \no-doc
     #

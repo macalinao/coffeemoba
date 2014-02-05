@@ -56,9 +56,9 @@ exports.Entry = ->
     return
 
 #
-# Define the implementation of #{Common.Engine}
+# Define the implementation of #{   Engine}
 #
-Server.Engine = class Engine extends Common.Engine
+class CfEngine extends Engine
     #
     # Default constructor of the engine
     #

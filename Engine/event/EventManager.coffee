@@ -6,7 +6,7 @@
 #
 # Define the manager of every event as a centralized module
 #
-Common.EventManager = class EventManager
+class EventManager
     #
     # Default constructor
     #
